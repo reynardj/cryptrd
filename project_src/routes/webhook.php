@@ -1,4 +1,8 @@
 <?php
+$router->get('/', function () use ($router) {
+    return 'Hello world';
+});
+
 $router->group(['prefix' => 'webhook'], function () use ($router) {
     $router->post('adsmedia', [
         'as'         => 'adsmedia',
