@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class TradeSignal extends BaseModel {
+class ErrorLog extends BaseModel {
 
     use SoftDeletes;
 
@@ -27,13 +27,13 @@ class TradeSignal extends BaseModel {
         });
     }
 
-    protected $table = "trade_signal";
+    protected $table = "error_log";
 
-    protected $primaryKey = "trade_signal_id";
+    protected $primaryKey = "error_log_id";
 
     protected $fillable = [];
 
-    // Accessors & Mutators
+    // Mutators
     protected $dates = [
         'created_at',
         'modified_at',
@@ -41,29 +41,9 @@ class TradeSignal extends BaseModel {
     ];
 
     // Attribute Casting
-    protected $casts = [
-        'trade_signal_id' => 'int',
-        'exchange_id' => 'int',
-        'ticker_id' => 'int',
-        'action' => 'string',
-        'close' => 'float',
-        'open' => 'float',
-        'high' => 'float',
-        'low' => 'float',
-        'time' => 'datetime',
-        'timenow' => 'datetime',
-        'volume' => 'float',
-        'interval' => 'string',
-        'created_by' => 'string',
-        'created_at' => 'datetime',
-        'modified_by' => 'string',
-        'modified_at' => 'datetime',
-        'deleted_by' => 'string',
-        'deleted_at' => 'datetime'
-    ];
+    protected $casts = [];
 
     // Validation rules
     public static $rules = [];
 
-    // Relationships
 }

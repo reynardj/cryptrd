@@ -2,6 +2,7 @@
 
 namespace App\Http\Helpers\Vendor;
 
+use App\Http\Helpers\CurlHelper;
 use GuzzleHttp\Client;
 
 class BinanceHelper
@@ -20,15 +21,16 @@ class BinanceHelper
 
     public static function test() {
         $client = new Client();
-        $res = $client->request('GET', self::BINANCE_API, [
-//            'query' => [
-//                'userkey' => 'sitr1k',
-//                'passkey' => 'gd123'
-//            ],
-//            'headers' => [
-//                'Accept' => 'application/xml'
-//            ]
-        ]);
+        $res = CurlHelper::get(self::BINANCE_API_1, []);
         dd($res);
+//        $res = $client->request('GET', self::BINANCE_API, [
+////            'query' => [
+////                'userkey' => 'sitr1k',
+////                'passkey' => 'gd123'
+////            ],
+////            'headers' => [
+////                'Accept' => 'application/xml'
+////            ]
+//        ]);
     }
 }
