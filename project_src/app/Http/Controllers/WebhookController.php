@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use app\Http\Helpers\CryptoSwingBotHelper;
+use App\Http\Helpers\CryptoSwingBotHelper;
 use App\Http\Helpers\ErrorHelper;
 use App\Http\Helpers\GeneralHelper;
 use App\Http\Helpers\NotificationHelper;
