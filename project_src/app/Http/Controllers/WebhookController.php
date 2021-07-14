@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use app\Http\Helpers\CryptoSwingBotHelper;
 use App\Http\Helpers\ErrorHelper;
 use App\Http\Helpers\GeneralHelper;
 use App\Http\Helpers\NotificationHelper;
+use App\Http\Helpers\TelegramHelper;
 use App\Models\Exchange;
 use App\Models\Ticker;
 use App\Models\TradeSignal;
@@ -63,5 +65,35 @@ class WebhookController
             ErrorHelper::log($request, 'MCAPI0002', $exception->getMessage());
         }
         app('db')->commit();
+    }
+
+    public function telegram_crypto_swing_bot_webhook(Request $request) {
+        $body = $request->json()->all();
+        if (!isset($body['message'])) {
+            exit;
+        }
+        if (!isset($body['message']['from'])) {
+            exit;
+        }
+        if (!isset($body['message']['text'])) {
+            exit;
+        }
+        if (!isset($body['message']['from']['id'])) {
+            exit;
+        }
+        $telegram_id = $body['message']['from']['id'];
+        if (!in_array($telegram_id, config('messenger.telegram.allowed_chat_ids'))) {
+            exit;
+        }
+        $text = $body['message']['text'];
+
+        if ($text == CryptoSwingBotHelper::HELP_COMMAND) {
+            TelegramHelper::send_message(
+                CryptoSwingBotHelper::get_help_message(),
+                $telegram_id
+            );
+        }
+
+        return response()->json('ok', 200, [], JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION);
     }
 }
