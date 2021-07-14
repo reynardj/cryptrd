@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Helpers;
+namespace App\Http\Helpers;
 
 class CryptoSwingBotHelper
 {
