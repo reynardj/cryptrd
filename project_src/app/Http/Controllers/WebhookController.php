@@ -69,6 +69,7 @@ class WebhookController
 
     public function telegram_crypto_swing_bot_webhook(Request $request) {
         $body = $request->json()->all();
+        TelegramHelper::log($body);
         if (!isset($body['message'])) {
             exit;
         }

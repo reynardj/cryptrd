@@ -2,6 +2,7 @@
 
 namespace App\Http\Helpers;
 
+use App\Models\TelegramBotLog;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 
@@ -46,5 +47,11 @@ class TelegramHelper
                 curl_close($ch);
             }
         }
+    }
+
+    public static function log($text) {
+        $telegram_bot_log = new TelegramBotLog;
+        $telegram_bot_log->description = $text;
+        $telegram_bot_log->save();
     }
 }
