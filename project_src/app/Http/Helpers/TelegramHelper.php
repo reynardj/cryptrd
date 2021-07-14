@@ -51,7 +51,7 @@ class TelegramHelper
 
     public static function log($text) {
         $telegram_bot_log = new TelegramBotLog;
-        $telegram_bot_log->description = $text;
+        $telegram_bot_log->description = json_encode($text);
         $telegram_bot_log->save();
     }
 }
